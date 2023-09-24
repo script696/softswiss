@@ -5,23 +5,52 @@ import { gamesSlice } from "@app/store/reducers/games/gamesSlice";
 
 export const useGamesGalleryRdx = () => {
   const dispatch = useAppDispatch();
-  const { games, page, cardsPerPage } = useAppSelector(
+  const { uiGames, page, cardsPerPage, currencies, providers } = useAppSelector(
     (state) => state.gamesReducer
   );
-
-  const { goNextPage } = gamesSlice.actions;
+  const { goNextPage, filterGamesByProvider, filterGamesByCurrency } =
+    gamesSlice.actions;
 
   const handleShowMore = () => {
     dispatch(goNextPage());
   };
 
+  const handleFilterByProvider = (id: string) => {
+    dispatch(filterGamesByProvider(id));
+  };
+
+  const handleFilterByCurrency = (id: string) => {
+    dispatch(filterGamesByCurrency(id));
+  };
+
   const gamesPart = useMemo(() => {
-    return Object.entries(games).slice(0, page * cardsPerPage);
-  }, [page, games]);
+    return uiGames.slice(0, page * cardsPerPage);
+  }, [page, uiGames]);
+
+  const mappedCurrencies = useMemo(() => {
+    return Object.entries(currencies).map(([label, value]) => ({
+      id: value.id,
+      label,
+    }));
+  }, [currencies]);
+
+  const mappedProviders = useMemo(() => {
+    return Object.entries(providers).map(([label, value]) => ({
+      id: value.id,
+      label,
+    }));
+  }, [providers]);
 
   useEffect(() => {
     dispatch(getAllGamesThunk());
   }, []);
 
-  return { gamesPart, handleShowMore };
+  return {
+    gamesPart,
+    handleShowMore,
+    currencies: mappedCurrencies,
+    providers: mappedProviders,
+    handleFilterByProvider,
+    handleFilterByCurrency,
+  };
 };
