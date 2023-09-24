@@ -5,12 +5,15 @@
   padding: 12px;
 
   &__avatar {
-    height: 100%;
+    width: 100%;
+    box-shadow: var(--shadow-l);
+    border-radius: var(--border-radius-l);
     aspect-ratio: 1 / 1;
     object-fit: cover;
   }
 
   &__title {
     text-align: center;
+    margin-top: 12px;
   }
 }
