@@ -1,15 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getProductsThunk } from "./gamesThunk";
-import { GameViewModel } from "@app/store/reducers/games/types/typedef";
+import { getAllGamesThunk } from "./gamesThunk";
+import { AllGamesViewModel } from "@app/store/reducers/games/types/typedef";
 
 export type ProductsState = {
-  games: Array<GameViewModel>;
+  games: AllGamesViewModel;
+  page: number;
+  cardsPerPage: number;
   isLoading: boolean;
   error: string;
 };
 
 const initialState: ProductsState = {
-  games: [],
+  games: {},
+  page: 1,
+  cardsPerPage: 12,
   isLoading: false,
   error: "",
 };
@@ -17,22 +21,26 @@ const initialState: ProductsState = {
 export const gamesSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    goNextPage: (state) => {
+      state.page = state.page + 1;
+    },
+  },
   extraReducers: {
     /* Get All games */
 
-    [getProductsThunk.fulfilled.type]: (
+    [getAllGamesThunk.fulfilled.type]: (
       state,
-      { payload }: PayloadAction<GameViewModel>
+      { payload }: PayloadAction<AllGamesViewModel>
     ) => {
       state.isLoading = false;
       state.error = "";
-      state.games = [payload];
+      state.games = payload;
     },
-    [getProductsThunk.pending.type]: (state) => {
+    [getAllGamesThunk.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [getProductsThunk.rejected.type]: (
+    [getAllGamesThunk.rejected.type]: (
       state,
       { payload }: PayloadAction<string>
     ) => {
