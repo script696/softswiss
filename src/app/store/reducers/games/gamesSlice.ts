@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getAllGamesThunk } from "./gamesThunk";
+import { getAllGamesThunk, getGameThunk } from "./gamesThunk";
 import {
   AllGamesViewModel,
   GameViewModel,
@@ -10,6 +10,7 @@ import { getCurrenciesHelper } from "@app/store/reducers/games/helpers/getCurren
 export type ProductsState = {
   games: Array<[string, GameViewModel]>;
   uiGames: Array<[string, GameViewModel]>;
+  game: GameViewModel | null;
   page: number;
   cardsPerPage: number;
   isLoading: boolean;
@@ -20,6 +21,7 @@ export type ProductsState = {
 
 const initialState: ProductsState = {
   games: [],
+  game: null,
   uiGames: [],
   page: 1,
   cardsPerPage: 12,
@@ -77,6 +79,24 @@ export const gamesSlice = createSlice({
       state.isLoading = true;
     },
     [getAllGamesThunk.rejected.type]: (
+      state,
+      { payload }: PayloadAction<string>
+    ) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    [getGameThunk.fulfilled.type]: (
+      state,
+      { payload }: PayloadAction<GameViewModel>
+    ) => {
+      state.isLoading = false;
+      state.error = "";
+      state.game = payload;
+    },
+    [getGameThunk.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [getGameThunk.rejected.type]: (
       state,
       { payload }: PayloadAction<string>
     ) => {

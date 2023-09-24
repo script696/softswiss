@@ -1,8 +1,8 @@
 import s from "@pages/GamesGallery/styles/GamesGallery.module.scss";
 import { GamesList } from "@widgets/GamesList";
 import { useGamesGalleryRdx } from "@pages/GamesGallery/hooks/useGamesGalleryRdx";
-import { Button } from "@shared/components/Button/Button";
 import { GamesFilters } from "@widgets/GamesFilters";
+import { Button } from "@mui/material";
 
 const GamesGallery = () => {
   const {
@@ -23,7 +23,9 @@ const GamesGallery = () => {
         onFilterByCurrency={handleFilterByCurrency}
       />
       <GamesList data={gamesPart} />
-      <Button onClick={handleShowMore}>Показать еще</Button>
+      <Button onClick={handleShowMore} variant={"contained"}>
+        Показать еще
+      </Button>
     </div>
   );
 };
