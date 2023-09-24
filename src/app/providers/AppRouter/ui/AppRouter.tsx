@@ -11,12 +11,12 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
-        <Route path={ROUTES_GAMES.GAMES_GALLERY} element={<GamesGallery />} />
+        <Route path={ROUTES_GAMES.GAMES} element={<GamesGallery />} />
         <Route path={ROUTES_GAMES.GAME} element={<Game />} />
       </Route>
       <Route
         path="/"
-        element={<Navigate to={`${ROUTES_GAMES.GAMES_GALLERY}`} replace />}
+        element={<Navigate to={`${ROUTES_GAMES.GAMES}`} replace />}
       />
       <Route
         path="*"
