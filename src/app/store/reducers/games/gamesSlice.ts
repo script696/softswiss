@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getProductsThunk } from "./gamesThunk";
+import { GameViewModel } from "@app/store/reducers/games/types/typedef";
 
 export type ProductsState = {
-  games: [];
+  games: Array<GameViewModel>;
   isLoading: boolean;
   error: string;
 };
@@ -22,11 +23,11 @@ export const gamesSlice = createSlice({
 
     [getProductsThunk.fulfilled.type]: (
       state,
-      { payload }: PayloadAction<any>
+      { payload }: PayloadAction<GameViewModel>
     ) => {
       state.isLoading = false;
       state.error = "";
-      state.games = payload;
+      state.games = [payload];
     },
     [getProductsThunk.pending.type]: (state) => {
       state.isLoading = true;

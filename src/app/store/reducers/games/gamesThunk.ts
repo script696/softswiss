@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { GameViewModel } from "@app/store/reducers/games/types/typedef";
 
-export const getProductsThunk = createAsyncThunk<any>(
+export const getProductsThunk = createAsyncThunk<GameViewModel>(
   "games/get",
   async (reqParams, thunkAPI) => {
     try {
@@ -8,7 +9,7 @@ export const getProductsThunk = createAsyncThunk<any>(
       // const mappedResData = ApiToViewModelMapper.getProducts(data);
       // return mappedResData;
     } catch (e) {
-      return thunkAPI.rejectWithValue("Не удалось загрузить пользователей");
+      return thunkAPI.rejectWithValue("Неизвестная ошибка");
     }
   }
 );

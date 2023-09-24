@@ -1,11 +1,5 @@
-export const getStaticUrl = (staticUrl: string) => {
-  const apiUrl = process.env["REACT_APP_API_URL"];
-  const stage = process.env["REACT_APP_STAGE"];
+export const getStaticUrl = (imageId: string) => {
+  const bucketUrl = process.env["REACT_APP_BUCKET_URL"];
 
-  const fullStaticUrl =
-    stage === "local"
-      ? `${apiUrl}/${staticUrl}`
-      : `${apiUrl}/static/${staticUrl}`;
-
-  return fullStaticUrl;
+  return `${bucketUrl}/i/s2/${imageId}.png`;
 };
