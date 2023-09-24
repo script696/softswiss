@@ -1,3 +1,10 @@
-.games-gallery {
-  display: flex;
+.game {
+  height: 100%;
+  padding: 32px;
+
+  &__wrapper {
+    display: grid;
+    height: 100%;
+    place-items: center;
+  }
 }

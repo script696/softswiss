@@ -5,6 +5,6 @@ export const ROUTES_BASE = {
 };
 
 export const ROUTES_GAMES = {
-  GAMES_GALLERY: "games-gallery",
-  GAME: "game",
+  GAMES: "/games",
+  GAME: "/games/:id",
 };
