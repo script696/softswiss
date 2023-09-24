@@ -1,8 +1,13 @@
-import { $apiClient } from "../client";
-import { GetAllGamesResponseDto } from "src/shared/api/games/dto/GetAllGamesDto";
+import mocks from "@shared/mocks/games.json";
+
+class MockApiClient {
+  static getAllGames() {
+    return Promise.resolve({ data: mocks });
+  }
+}
 
 export class GameService {
   static getAllGames() {
-    return $apiClient.get<GetAllGamesResponseDto>("product/get");
+    return MockApiClient.getAllGames();
   }
 }

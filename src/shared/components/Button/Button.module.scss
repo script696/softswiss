@@ -1,9 +1,8 @@
 .button {
+  color: var(--primary-color);
   padding: 0;
   cursor: pointer;
-}
-
-.outline {
-  color: var(--primary-color);
   border: 1px solid var(--primary-color);
 }
+
+

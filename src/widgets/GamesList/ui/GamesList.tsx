@@ -1,13 +1,15 @@
 import s from "../styles/GamesList.module.scss";
-import mocks from "@shared/mocks/games.json";
 import { GameCard } from "@features/GameCard";
+import { FC } from "react";
+import { GameViewModel } from "@app/store/reducers/games/types/typedef";
 
-const GamesList = () => {
-  const gamesList = Object.entries(mocks).slice(0, 12);
-
+type GamesListProps = {
+  data: Array<[string, GameViewModel]>;
+};
+const GamesList: FC<GamesListProps> = ({ data }) => {
   return (
     <ul className={s["games-list"]}>
-      {gamesList.map(([gameId, game], idx) => {
+      {data.map(([gameId, game], idx) => {
         const data = { gameId, game };
         return <GameCard key={idx} data={data} />;
       })}
