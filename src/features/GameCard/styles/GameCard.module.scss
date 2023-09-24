@@ -1,0 +1,16 @@
+.game-card {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  padding: 12px;
+
+  &__avatar {
+    height: 150px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  &__title {
+    text-align: center;
+  }
+}

@@ -1,7 +1,12 @@
 @import '@app/styles/mixins';
 
 .main-layout {
-  display: flex;
+  height: 100%;
+  padding: 50px;
+
+  &__main {
+    height: 100%;
+  }
 }
 
 

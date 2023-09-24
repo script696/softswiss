@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "@app/*" : ["src/app/*"],
@@ -24,5 +25,5 @@
       "module": "CommonJS"
     }
   },
-  "include": ["src"]
+  "include": ["src"],
 }

@@ -1,4 +1,3 @@
-export interface GetAllGamesResponseDto {
-  products: any;
-  total: number;
-}
+import { GameApiModel, GameId } from "../typedef";
+
+export type GetAllGamesResponseDto = Record<GameId, GameApiModel>;
